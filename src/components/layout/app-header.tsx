@@ -6,7 +6,7 @@ import { logout } from "@/features/auth/auth-actions";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
-import type { AdminSummary } from "@/types";
+import type { AdminSummary } from "@/lib/types";
 
 const roleLabels: Record<AdminSummary["role"], string> = {
   super_admin: "Super admin",

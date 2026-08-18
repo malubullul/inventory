@@ -4,7 +4,7 @@ import { useState, type ReactNode } from "react";
 import { AppHeader } from "@/components/layout/app-header";
 import { AppSidebar } from "@/components/layout/app-sidebar";
 import { Sheet, SheetContent, SheetTitle } from "@/components/ui/sheet";
-import type { AdminSummary } from "@/types";
+import type { AdminSummary } from "@/lib/types";
 
 type DashboardShellProps = {
   admin: AdminSummary;

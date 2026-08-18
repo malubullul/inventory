@@ -1,4 +1,4 @@
-import type { AdminRole } from "@/types";
+import type { AdminRole } from "@/lib/types";
 
 export type ManagedAccount = {
   id: string;

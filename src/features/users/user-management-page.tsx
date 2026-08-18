@@ -1,6 +1,6 @@
 import { PageContainer } from "@/components/layout/page-container";
 import { PageTitle } from "@/components/shared/page-title";
-import type { AdminSummary } from "@/types";
+import type { AdminSummary } from "@/lib/types";
 import type { UserManagementData } from "./user-types";
 import { UserManagementTable } from "./user-management-table";
 

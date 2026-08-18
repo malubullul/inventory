@@ -1,5 +1,5 @@
 import { createClient } from "@/lib/supabase/server";
-import type { AdminSummary } from "@/types";
+import type { AdminSummary } from "@/lib/types";
 
 type ProfileRow = {
   full_name: string;

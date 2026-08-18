@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation";
 import { Separator } from "@/components/ui/separator";
 import { navigationItems } from "@/lib/constants";
 import { cn } from "@/lib/utils";
-import type { AdminSummary } from "@/types";
+import type { AdminSummary } from "@/lib/types";
 
 type AppSidebarProps = { admin: AdminSummary; compact?: boolean; onNavigate?: () => void };
 

@@ -2,7 +2,7 @@
 
 import { revalidatePath } from "next/cache";
 import { headers } from "next/headers";
-import type { AdminRole } from "@/types";
+import type { AdminRole } from "@/lib/types";
 import { getCurrentAdmin } from "@/features/auth/auth-queries";
 import { getSupabaseAdmin } from "@/lib/supabase/admin";
 import { inviteUserSchema } from "./user-schema";

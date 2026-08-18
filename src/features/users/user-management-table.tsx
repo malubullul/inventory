@@ -8,7 +8,7 @@ import { Input } from "@/components/ui/input";
 import { FormDialog } from "@/components/shared/form-dialog";
 import { deleteUserAccount, inviteUser, updateUserActive, updateUserRole } from "./user-actions";
 import type { ManagedAccount } from "./user-types";
-import type { AdminRole } from "@/types";
+import type { AdminRole } from "@/lib/types";
 
 type UserManagementTableProps = { accounts: ManagedAccount[]; currentUserId: string };
 

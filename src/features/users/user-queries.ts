@@ -1,4 +1,4 @@
-import type { AdminRole } from "@/types";
+import type { AdminRole } from "@/lib/types";
 import { getSupabaseAdmin } from "@/lib/supabase/admin";
 import type { ManagedAccount, UserManagementData } from "./user-types";
 
