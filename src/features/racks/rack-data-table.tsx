@@ -4,13 +4,13 @@ import { useState, type ReactNode } from "react";
 import { Pencil, Plus } from "lucide-react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { toast } from "sonner";
-import { ConfirmActionDialog } from "@/components/shared/confirm-action-dialog";
-import { DataTableToolbar } from "@/components/shared/data-table-toolbar";
 import { EmptyState } from "@/components/shared/empty-state";
 import { FormDialog } from "@/components/shared/form-dialog";
 import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import type { ActionResult, Pagination } from "./master-data-types";
+import { RackConfirmDialog } from "./rack-confirm-dialog";
+import { RackToolbar } from "./rack-toolbar";
+import type { RackActionResult, RackPagination } from "./rack-types";
 
 type TableRecord = {
   id: string;
@@ -25,14 +25,14 @@ type TableColumn<Record extends TableRecord> = {
   render: (record: Record) => ReactNode;
 };
 
-type MasterDataTableProps<Record extends TableRecord> = {
+type RackDataTableProps<Record extends TableRecord> = {
   records: Record[];
-  pagination: Pagination;
+  pagination: RackPagination;
   entityLabel: string;
   searchPlaceholder: string;
   columns: TableColumn<Record>[];
   emptyDescription: string;
-  onToggleStatus: (id: string, isActive: boolean) => Promise<ActionResult>;
+  onToggleStatus: (id: string, isActive: boolean) => Promise<RackActionResult>;
   renderForm: (record: Record | null, onSuccess: () => void) => ReactNode;
   relationFilter?: {
     param: string;
@@ -41,7 +41,7 @@ type MasterDataTableProps<Record extends TableRecord> = {
   };
 };
 
-export function MasterDataTable<Record extends TableRecord>({
+export function RackDataTable<Record extends TableRecord>({
   records,
   pagination,
   entityLabel,
@@ -51,7 +51,7 @@ export function MasterDataTable<Record extends TableRecord>({
   onToggleStatus,
   renderForm,
   relationFilter,
-}: MasterDataTableProps<Record>) {
+}: RackDataTableProps<Record>) {
   const pathname = usePathname();
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -94,7 +94,7 @@ export function MasterDataTable<Record extends TableRecord>({
 
   return (
     <section className="space-y-4">
-      <DataTableToolbar
+      <RackToolbar
         searchPlaceholder={searchPlaceholder}
         relationParam={relationFilter?.param}
         relationLabel={relationFilter?.label}
@@ -103,7 +103,7 @@ export function MasterDataTable<Record extends TableRecord>({
         <Button type="button" className="h-10 rounded-xl" onClick={openNewForm}>
           <Plus data-icon="inline-start" /> Tambah {entityLabel}
         </Button>
-      </DataTableToolbar>
+      </RackToolbar>
 
       <div className="overflow-hidden rounded-2xl border bg-card">
         <Table>
@@ -162,7 +162,7 @@ export function MasterDataTable<Record extends TableRecord>({
         <div key={editingRecord?.id ?? "new"}>{renderForm(editingRecord, handleFormSuccess)}</div>
       </FormDialog>
 
-      <ConfirmActionDialog
+      <RackConfirmDialog
         open={Boolean(statusRecord)}
         onOpenChange={(open) => { if (!open) setStatusRecord(null); }}
         title={statusRecord?.isActive ? `Nonaktifkan ${entityLabel}?` : `Aktifkan ${entityLabel}?`}

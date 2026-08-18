@@ -1,19 +1,19 @@
-export type MasterDataStatus = "all" | "active" | "inactive";
+export type RackStatusFilter = "all" | "active" | "inactive";
 
-export type MasterDataParams = {
+export type RackQueryParams = {
   search?: string;
-  status?: MasterDataStatus;
+  status?: RackStatusFilter;
   page?: string;
   pageSize?: string;
 };
 
-export type Pagination = {
+export type RackPagination = {
   page: number;
   pageSize: number;
   total: number;
 };
 
-export type ActionResult = {
+export type RackActionResult = {
   success: boolean;
   message: string;
   fieldErrors?: Record<string, string[]>;

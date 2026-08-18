@@ -57,7 +57,7 @@ Trigger dari migration akan membuat row `profiles` secara otomatis. Bila user di
 Route berikut tersedia setelah login:
 
 - `/inventory` - pilih kartu rak untuk melihat isi barang dan kuantitasnya.
-- `/master-data/racks` - kelola kode, nama, deskripsi, dan status rak.
+- `/racks` - kelola kode, nama, deskripsi, dan status rak.
 
 Aplikasi memakai satu gudang utama secara internal. Saat menambah rak, sistem langsung menghubungkannya ke gudang tersebut sehingga admin tidak perlu mengatur bagian, kategori, atau lokasi.
 ## Database Types
@@ -84,7 +84,7 @@ src/
   features/
     auth/                   # Login, session, query profile
     dashboard/              # Ringkasan dashboard
-    master-data/            # Pengelolaan rak
+    racks/                  # Pengelolaan rak
     inventory/              # Daftar item dan stok dari workbook
     loans/                  # Peminjaman, pengembalian, dan dokumentasi
   lib/
@@ -97,7 +97,9 @@ supabase/
   inventory-seed.sql        # 590 item workbook untuk 12 rak
 ```
 
-Folder `src/features/master-data` menyimpan fitur rak. Folder `src/features/inventory` menyimpan daftar inventaris. Folder `src/features/loans` menyimpan alur pinjam, kembali, dan kondisi alat. `src/components/layout/dashboard-shell.tsx` membuat seluruh route dashboard berbagi header dan sidebar yang sama.
+Folder `src/features/racks` menyimpan fitur rak. Folder `src/features/inventory` menyimpan daftar inventaris. Folder `src/features/loans` menyimpan alur pinjam, kembali, dan kondisi alat. `src/components/layout/dashboard-shell.tsx` membuat seluruh route dashboard berbagi header dan sidebar yang sama.
+
+Panduan struktur folder dan hubungan frontend, backend, serta database tersedia di [`docs/ARSITEKTUR.md`](docs/ARSITEKTUR.md).
 
 ## Arsitektur
 

@@ -12,5 +12,5 @@ export const navigationItems: NavigationItem[] = [
   { label: "Inventory", href: "/inventory", icon: Archive },
   { label: "Transaksi Alat", href: "/loans", icon: ClipboardCheck },
   { label: "Laporan", href: "/reports", icon: BarChart3 },
-  { label: "Rak", href: "/master-data/racks", icon: Rows3 },
+  { label: "Rak", href: "/racks", icon: Rows3 },
 ];

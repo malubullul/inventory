@@ -1,13 +1,13 @@
 import { createClient } from "@/lib/supabase/server";
-import type { MasterDataParams, Pagination, RackRecord } from "../master-data-types";
+import type { RackPagination, RackQueryParams, RackRecord } from "./rack-types";
 
-function getPagination(params: MasterDataParams) {
+function getPagination(params: RackQueryParams) {
   const pageSize = [10, 25, 50].includes(Number(params.pageSize)) ? Number(params.pageSize) : 10;
   const page = Math.max(1, Number(params.page) || 1);
   return { page, pageSize };
 }
 
-export async function getRacks(params: MasterDataParams): Promise<{ records: RackRecord[]; pagination: Pagination }> {
+export async function getRacks(params: RackQueryParams): Promise<{ records: RackRecord[]; pagination: RackPagination }> {
   const supabase = await createClient();
   const { page, pageSize } = getPagination(params);
   let query = supabase.from("racks").select("id, code, name, description, is_active, created_at", { count: "exact" });

@@ -6,7 +6,7 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { Input } from "@/components/ui/input";
 
 type FilterOption = { value: string; label: string };
-type DataTableToolbarProps = {
+type RackToolbarProps = {
   searchPlaceholder: string;
   relationParam?: string;
   relationLabel?: string;
@@ -14,7 +14,7 @@ type DataTableToolbarProps = {
   children?: ReactNode;
 };
 
-export function DataTableToolbar({ searchPlaceholder, relationParam, relationLabel, relationOptions, children }: DataTableToolbarProps) {
+export function RackToolbar({ searchPlaceholder, relationParam, relationLabel, relationOptions, children }: RackToolbarProps) {
   const pathname = usePathname();
   const router = useRouter();
   const searchParams = useSearchParams();

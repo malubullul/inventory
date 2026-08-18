@@ -3,18 +3,18 @@
 import { revalidatePath } from "next/cache";
 import { getCurrentAdmin } from "@/features/auth/auth-queries";
 import { createClient } from "@/lib/supabase/server";
-import type { ActionResult } from "../master-data-types";
+import type { RackActionResult } from "./rack-types";
 import { rackSchema, type RackValues } from "./rack-schema";
 
-const paths = ["/inventory", "/master-data/racks"];
+const paths = ["/inventory", "/racks"];
 const refresh = () => paths.forEach((path) => revalidatePath(path));
 
-async function canMutate(): Promise<ActionResult | null> {
+async function canMutate(): Promise<RackActionResult | null> {
   const admin = await getCurrentAdmin();
   return admin?.isActive ? null : { success: false, message: "Akun Anda tidak aktif atau sesi telah berakhir." };
 }
 
-function result(error: { code?: string } | null, message: string): ActionResult {
+function result(error: { code?: string } | null, message: string): RackActionResult {
   if (!error) return { success: true, message };
   if (error.code === "23505") return { success: false, message: "Kode rak sudah digunakan." };
   return { success: false, message: "Data gagal disimpan. Silakan coba kembali." };
@@ -25,7 +25,7 @@ function validate(input: unknown) {
   return parsed.success ? parsed : null;
 }
 
-export async function createRack(input: RackValues): Promise<ActionResult> {
+export async function createRack(input: RackValues): Promise<RackActionResult> {
   const permission = await canMutate();
   if (permission) return permission;
   const parsed = validate(input);
@@ -37,7 +37,7 @@ export async function createRack(input: RackValues): Promise<ActionResult> {
   if (actionResult.success) refresh();
   return actionResult;
 }
-export async function updateRack(id: string, input: RackValues): Promise<ActionResult> {
+export async function updateRack(id: string, input: RackValues): Promise<RackActionResult> {
   const permission = await canMutate();
   if (permission) return permission;
   const parsed = validate(input);
@@ -50,7 +50,7 @@ export async function updateRack(id: string, input: RackValues): Promise<ActionR
   return actionResult;
 }
 
-export async function toggleRackStatus(id: string, isActive: boolean): Promise<ActionResult> {
+export async function toggleRackStatus(id: string, isActive: boolean): Promise<RackActionResult> {
   const permission = await canMutate();
   if (permission) return permission;
   const supabase = await createClient();

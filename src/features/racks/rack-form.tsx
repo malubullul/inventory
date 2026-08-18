@@ -5,7 +5,7 @@ import { useTransition } from "react";
 import { useForm, type Resolver } from "react-hook-form";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
-import type { RackRecord } from "../master-data-types";
+import type { RackRecord } from "./rack-types";
 import { createRack, updateRack } from "./rack-actions";
 import { rackSchema } from "./rack-schema";
 
